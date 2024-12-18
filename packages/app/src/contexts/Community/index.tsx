@@ -20,7 +20,8 @@ interface ValidatorEntry {
   website?: string
   validators: Partial<Record<ValidatorSupportedChains, string[]>>
 }
-declare const ValidatorCommunity: ValidatorEntry[]
+// FIXME - shouldn't be hard-coded
+const ValidatorCommunity: ValidatorEntry[] = []
 // end temporary fix above
 import type { ReactNode } from 'react'
 import { createContext, useContext, useState } from 'react'
@@ -36,7 +37,7 @@ export const useCommunity = () => useContext(CommunityContext)
 export const CommunityProvider = ({ children }: { children: ReactNode }) => {
   // Stores a randomised validator community dataset.
   const [validatorCommunity] = useState<ValidatorEntry[]>([
-    ...shuffle(ValidatorCommunity),
+    ...shuffle(ValidatorCommunity ? ValidatorCommunity : []),
   ])
 
   return (

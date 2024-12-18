@@ -57,22 +57,15 @@ export class Apis {
     // Instantiate Api instance for relay chain.
     this.instances[network] = new Api(network, 'relay')
 
-    if (network !== 'tangle-mainnet' && network !== 'tangle-testnet') {
-      //  Instantiate Api instance for People chain.
-      this.instances[`people-${network}`] = new Api(
-        `people-${network}`,
-        'system'
-      )
-    }
+    //  Instantiate Api instance for People chain.
+    this.instances[`people-${network}`] = new Api(`people-${network}`, 'system')
 
     //3. Initialize chain instances.
 
     this.instances[network].initialize(type, rpcEndpoint)
 
-    if (network !== 'tangle-mainnet' && network !== 'tangle-testnet') {
-      // NOTE: Currently defaulting to websocket connection for system chains:
-      this.instances[`people-${network}`].initialize(type, 'IBP2')
-    }
+    // NOTE: Currently defaulting to websocket connection for system chains:
+    this.instances[`people-${network}`].initialize(type, 'IBP2')
   }
 
   // Gracefully disconnect and then destroy an Api instance.
@@ -84,13 +77,11 @@ export class Apis {
       delete this.instances[network]
     }
 
-    if (network !== 'tangle-mainnet' && network !== 'tangle-testnet') {
-      // Disconnect from People chain Api instance.
-      const peopleApi = this.instances[`people-${network}`]
-      if (peopleApi) {
-        await peopleApi.disconnect(true)
-        delete this.instances[`people-${network}`]
-      }
+    // Disconnect from People chain Api instance.
+    const peopleApi = this.instances[`people-${network}`]
+    if (peopleApi) {
+      await peopleApi.disconnect(true)
+      delete this.instances[`people-${network}`]
     }
   }
 }

@@ -53,9 +53,7 @@ export const NetworkProvider = ({ children }: { children: ReactNode }) => {
     // Disconnect from current APIs before switching network.
     await Promise.all([
       await Apis.destroy(network.name),
-      network.name !== 'tangle-mainnet' &&
-        network.name !== 'tangle-testnet' &&
-        (await Apis.destroy(`people-${network.name}`)),
+      await Apis.destroy(`people-${network.name}`),
     ])
 
     setNetwork({

@@ -5,9 +5,19 @@ import { NetworkList } from 'config/networks'
 import type { NetworkContextInterface } from './types'
 
 export const defaultNetworkContext: NetworkContextInterface = {
-  network: NetworkList.tangleTestnet.name,
-  networkData: NetworkList.tangleTestnet,
+  network: NetworkList.polkadot.name,
+  networkData: NetworkList.polkadot,
   switchNetwork: async () => new Promise((resolve) => resolve(undefined)),
 }
 
-export const defaultNetwork = 'tangle-testnet'
+export const defaultNetwork = 'polkadot'
+
+// FIXME - get errors on initial load if use Tangle Network as default.
+
+// export const defaultNetworkContext: NetworkContextInterface = {
+//   network: NetworkList.tangleTestnet.name,
+//   networkData: NetworkList.tangleTestnet,
+//   switchNetwork: async () => new Promise((resolve) => resolve(undefined)),
+// }
+
+// export const defaultNetwork = 'tangle-testnet'

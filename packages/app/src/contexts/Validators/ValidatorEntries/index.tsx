@@ -318,20 +318,16 @@ export const ValidatorsProvider = ({ children }: { children: ReactNode }) => {
     // NOTE: validators are shuffled before committed to state.
     setValidators(shuffle(validatorEntries))
 
-    if (network !== 'tangle-mainnet' && network !== 'tangle-testnet') {
-      const peopleApiId: ChainId = `people-${network}`
-      const peopleApiClient = Apis.getClient(
-        `people-${network}` as SystemChainId
+    const peopleApiId: ChainId = `people-${network}`
+    const peopleApiClient = Apis.getClient(`people-${network}` as SystemChainId)
+    if (peopleApiClient) {
+      const addresses = validatorEntries.map(({ address }) => address)
+      const { identities, supers } = await Identities.fetch(
+        peopleApiId,
+        addresses
       )
-      if (peopleApiClient) {
-        const addresses = validatorEntries.map(({ address }) => address)
-        const { identities, supers } = await Identities.fetch(
-          peopleApiId,
-          addresses
-        )
-        setValidatorIdentities(identities)
-        setValidatorSupers(supers)
-      }
+      setValidatorIdentities(identities)
+      setValidatorSupers(supers)
     }
 
     setValidatorsFetched('synced')

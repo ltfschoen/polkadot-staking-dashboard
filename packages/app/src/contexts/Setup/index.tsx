@@ -31,10 +31,7 @@ export const SetupContext =
 export const useSetup = () => useContext(SetupContext)
 
 export const SetupProvider = ({ children }: { children: ReactNode }) => {
-  const {
-    network,
-    networkData,
-  } = useNetwork()
+  const { network, networkData } = useNetwork()
   const units = networkData?.units || 18
   const { accounts } = useImportedAccounts()
   const { activeAccount } = useActiveAccounts()
