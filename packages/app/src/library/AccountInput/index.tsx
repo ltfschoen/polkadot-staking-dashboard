@@ -30,8 +30,11 @@ export const AccountInput = ({
   const { t } = useTranslation('library')
 
   const {
-    networkData: { ss58 },
+    // FIXME
+    networkData,
+    // networkData: { ss58 },
   } = useNetwork()
+  const ss58 = networkData?.ss58 || 42
   const { accounts } = useImportedAccounts()
   const { setModalResize } = useOverlay().modal
 

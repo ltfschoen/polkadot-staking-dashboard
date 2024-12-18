@@ -27,8 +27,12 @@ export const TransferOptionsProvider = ({
 }) => {
   const {
     network,
-    networkData: { units, defaultFeeReserve },
+    // FIXME
+    networkData,
+    // networkData: { units, defaultFeeReserve },
   } = useNetwork()
+  const units = networkData?.units || 18
+  const defaultFeeReserve = networkData?.defaultFeeReserve || 0
   const { consts, activeEra } = useApi()
   const { activeAccount } = useActiveAccounts()
   const { getLedger, getBalance, getLocks, getPoolMembership } = useBalances()

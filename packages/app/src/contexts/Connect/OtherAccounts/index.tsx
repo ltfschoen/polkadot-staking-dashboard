@@ -34,8 +34,11 @@ export const OtherAccountsProvider = ({
 }) => {
   const {
     network,
-    networkData: { ss58 },
+    // FIXME
+    networkData,
+    // networkData: { ss58 },
   } = useNetwork()
+  const ss58 = networkData?.ss58 || 42
   const { extensionAccountsSynced, getExtensionAccounts } =
     useExtensionAccounts()
   const { checkingInjectedWeb3 } = useExtensions()

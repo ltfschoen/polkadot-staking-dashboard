@@ -14,6 +14,7 @@ export const PageWithTitle = ({ page }: { page: PageItem }) => {
 
   return (
     <Page>
+      {/* @ts-expect-error: FIXME */}
       <Helmet>
         <title>{`${t('title', {
           context: `${network}`,

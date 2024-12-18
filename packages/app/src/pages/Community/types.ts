@@ -1,7 +1,14 @@
 // Copyright 2024 @polkadot-cloud/polkadot-staking-dashboard authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
-import type { ValidatorSupportedChains } from '@w3ux/validator-assets'
+// FIXME - this is temporary to pass tests when `yarn run test` is run
+// import type { ValidatorSupportedChains } from '@w3ux/validator-assets'
+type ValidatorSupportedChains =
+  | 'polkadot'
+  | 'kusama'
+  | 'westend'
+  | 'tangle-mainnet'
+  | 'tangle-testnet'
 import type { Dispatch, SetStateAction } from 'react'
 
 export interface ItemProps {

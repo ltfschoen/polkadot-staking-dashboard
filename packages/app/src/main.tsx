@@ -8,6 +8,8 @@ import { version } from '../package.json'
 // Network styles.
 import 'styles/accents/kusama-relay.css'
 import 'styles/accents/polkadot-relay.css'
+import 'styles/accents/tangle-mainnet.css'
+import 'styles/accents/tangle-testnet.css'
 import 'styles/accents/westend-relay.css'
 
 // App styles.

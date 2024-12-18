@@ -11,3 +11,13 @@ export const defaultNetworkContext: NetworkContextInterface = {
 }
 
 export const defaultNetwork = 'polkadot'
+
+// FIXME - get errors on initial load if use Tangle Network as default.
+
+// export const defaultNetworkContext: NetworkContextInterface = {
+//   network: NetworkList.tangleTestnet.name,
+//   networkData: NetworkList.tangleTestnet,
+//   switchNetwork: async () => new Promise((resolve) => resolve(undefined)),
+// }
+
+// export const defaultNetwork = 'tangle-testnet'

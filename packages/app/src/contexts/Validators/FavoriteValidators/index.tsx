@@ -25,9 +25,11 @@ export const FavoriteValidatorsProvider = ({
 }) => {
   const { isReady } = useApi()
   const {
-    networkData: { name },
+    networkData,
+    // networkData: { name },
     network,
   } = useNetwork()
+  const name = networkData?.name || ''
   const { fetchValidatorPrefs } = useValidators()
 
   // Stores the user's favorite validators.

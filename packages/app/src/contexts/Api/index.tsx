@@ -82,7 +82,7 @@ export const APIProvider = ({ children, network }: APIProviderProps) => {
         localStorage.removeItem(`${network}_rpc_endpoint`)
       }
     }
-    return NetworkList[network].endpoints.defaultRpcEndpoint
+    return NetworkList[network]?.endpoints?.defaultRpcEndpoint || ''
   }
 
   // The current RPC endpoint for the network.

@@ -25,8 +25,11 @@ export const PayeeInput = ({
   const { getBondedAccount } = useBonded()
   const { accounts } = useImportedAccounts()
   const {
-    networkData: { ss58 },
+    // FIXME
+    networkData,
+    // networkData: { ss58 },
   } = useNetwork()
+  const ss58 = networkData?.ss58 || 42
   const { activeAccount } = useActiveAccounts()
   const controller = getBondedAccount(activeAccount)
 
