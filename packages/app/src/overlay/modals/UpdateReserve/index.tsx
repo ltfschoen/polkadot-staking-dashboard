@@ -39,7 +39,7 @@ export const UpdateReserve = () => {
   const { edReserved } = getTransferOptions(activeAccount)
   const minReserve = planckToUnitBn(edReserved, units)
   const maxReserve = minReserve.plus(
-    ['polkadot', 'westend', 'tangle-mainnet', 'tangle-testnet'].includes(
+    ['polkadot', 'kusama', 'westend', 'tangle-mainnet', 'tangle-testnet'].includes(
       network
     )
       ? 3
