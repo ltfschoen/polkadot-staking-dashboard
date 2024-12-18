@@ -317,16 +317,21 @@ export const ValidatorsProvider = ({ children }: { children: ReactNode }) => {
     setAvgCommission(avg)
     // NOTE: validators are shuffled before committed to state.
     setValidators(shuffle(validatorEntries))
-    const peopleApiId: ChainId = `people-${network}`
-    const peopleApiClient = Apis.getClient(`people-${network}` as SystemChainId)
-    if (peopleApiClient) {
-      const addresses = validatorEntries.map(({ address }) => address)
-      const { identities, supers } = await Identities.fetch(
-        peopleApiId,
-        addresses
+
+    if (network !== 'tangle-mainnet' && network !== 'tangle-testnet') {
+      const peopleApiId: ChainId = `people-${network}`
+      const peopleApiClient = Apis.getClient(
+        `people-${network}` as SystemChainId
       )
-      setValidatorIdentities(identities)
-      setValidatorSupers(supers)
+      if (peopleApiClient) {
+        const addresses = validatorEntries.map(({ address }) => address)
+        const { identities, supers } = await Identities.fetch(
+          peopleApiId,
+          addresses
+        )
+        setValidatorIdentities(identities)
+        setValidatorSupers(supers)
+      }
     }
 
     setValidatorsFetched('synced')

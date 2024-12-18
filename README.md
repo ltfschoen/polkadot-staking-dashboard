@@ -20,7 +20,7 @@ Polkadot Staking Dashboard supports URL variables that can be used to direct use
 
 The currently supported URL variables are as follows:
 
-- **n**: Controls the default network to connect to upon visiting the dashboard. Supported values are `polkadot`, `kusama` and `westend`.
+- **n**: Controls the default network to connect to upon visiting the dashboard. Supported values are `polkadot`, `kusama`, `westend`, `tangle-mainnet`, and `tangle-testnet`.
 - **l**: Controls the default to use upon visiting the dashboard. Supported values are `en` and `cn`.
 - **a**: Controls the account to connect to upon visiting the dashboard. Ignored if the account is not present in the initial imported accounts.
 
@@ -28,10 +28,10 @@ URL variables take precedence over saved values in local storage, and will overw
 
 ### Example URL:
 
-The following URL will load Kusama and use the Chinese localisation resource:
+The following URL will load Tangle Mainnet and use the Chinese localisation resource:
 
 ```
-staking.polkadot.cloud/#/overview?n=kusama&l=cn
+staking.polkadot.cloud/#/overview?n=tangle-mainnet&l=cn
 ```
 
 ## Presentations
@@ -39,8 +39,50 @@ staking.polkadot.cloud/#/overview?n=kusama&l=cn
 - 29/06/2023: [[Video] Polkadot Decoded 2023: The Next Step of the Polkadot UX Journey](https://www.youtube.com/watch?v=s78SZZ_ZA64)
 - 30/06/2022: [[Video] Polkadot Decoded 2022: Polkadot Staking Dashboard Demo](https://youtu.be/H1WGu6mf1Ls)
 
-
 ## Repository Transfer History
 
 **17/06/2024:** Moved from `paritytech/polkadot-staking-dashboard`.
 
+## Contributors
+
+- Install NVM
+- Install Node.js defined in .nvmrc
+
+  ```bash
+  nvm install
+  nvm use
+  ```
+
+- Install Yarn
+
+  ```bash
+  npm install -g yarn
+  npm install -g corepack
+  yarn set version 4.1.1
+  corepack enable
+  corepack prepare yarn@v4.1.1 --activate
+  ```
+
+- Install dependencies
+
+  ```bash
+  yarn
+  yarn run lint
+  ```
+
+- Run development. Note: Must pass linting or may get errors
+
+  ```bash
+  yarn run dev
+  ```
+
+- Clear build
+
+  ```bash
+  yarn run clear
+  ```
+
+- Clear dependencies
+  ```bash
+  yarn run reset
+  ```

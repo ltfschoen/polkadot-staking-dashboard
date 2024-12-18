@@ -79,9 +79,9 @@ export const NetworkBar = () => {
         </section>
         <section>
           <div className="hide-small">
-            {plugins.includes('staking_api') && network !== 'westend' && (
-              <TokenPrice />
-            )}
+            {plugins.includes('staking_api') &&
+              network !== 'westend' &&
+              network !== 'tangle-testnet' && <TokenPrice />}
             <div className="stat last">
               <FontAwesomeIcon icon={faHive} />
               <Odometer

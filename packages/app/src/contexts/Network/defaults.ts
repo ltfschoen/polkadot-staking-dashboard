@@ -5,9 +5,9 @@ import { NetworkList } from 'config/networks'
 import type { NetworkContextInterface } from './types'
 
 export const defaultNetworkContext: NetworkContextInterface = {
-  network: NetworkList.polkadot.name,
-  networkData: NetworkList.polkadot,
+  network: NetworkList.tangleTestnet.name,
+  networkData: NetworkList.tangleTestnet,
   switchNetwork: async () => new Promise((resolve) => resolve(undefined)),
 }
 
-export const defaultNetwork = 'polkadot'
+export const defaultNetwork = 'tangle-testnet'

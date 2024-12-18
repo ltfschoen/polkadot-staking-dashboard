@@ -35,6 +35,14 @@ export const MigrateProvider = ({ children }: { children: ReactNode }) => {
     localStorage.removeItem('westend_exposures')
     localStorage.removeItem('westend_era_exposures')
 
+    localStorage.removeItem('tangle_mainnet_validators')
+    localStorage.removeItem('tangle_mainnet_exposures')
+    localStorage.removeItem('tangle_mainnet_era_exposures')
+
+    localStorage.removeItem('tangle_testnet_validators')
+    localStorage.removeItem('tangle_testnet_exposures')
+    localStorage.removeItem('tangle_testnet_era_exposures')
+
     // Remove locale data.
     localStorage.removeItem('lng_resources')
   }

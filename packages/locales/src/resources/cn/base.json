@@ -46,6 +46,8 @@
     "title_kusama": "Kusama抵押平台",
     "title_polkadot": "Polkadot抵押平台",
     "title_westend": "Westend抵押平台",
+    "title_tangle_mainnet": "Tangle纠纷 Mainnet主网络",
+    "title_tangle_testnet": "Tangle纠纷 Testnet测试网络",
     "validators": "验证人"
   }
 }

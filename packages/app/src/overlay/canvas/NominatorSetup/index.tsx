@@ -44,21 +44,25 @@ export const NominatorSetup = () => {
       </CanvasTitleWrapper>
 
       <CardWrapper className="canvas">
+        {/* @ts-expect-error: FIXME */}
         <Element name="payee" style={{ position: 'absolute' }} />
         <Payee section={1} />
       </CardWrapper>
 
       <CardWrapper className="canvas">
+        {/* @ts-expect-error: FIXME */}
         <Element name="nominate" style={{ position: 'absolute' }} />
         <Nominate bondFor="nominator" section={2} />
       </CardWrapper>
 
       <CardWrapper className="canvas">
+        {/* @ts-expect-error: FIXME */}
         <Element name="bond" style={{ position: 'absolute' }} />
         <Bond section={3} />
       </CardWrapper>
 
       <CardWrapper className="canvas">
+        {/* @ts-expect-error: FIXME */}
         <Element name="summary" style={{ position: 'absolute' }} />
         <Summary section={4} />
       </CardWrapper>

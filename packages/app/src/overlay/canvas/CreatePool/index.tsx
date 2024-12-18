@@ -45,26 +45,31 @@ export const CreatePool = () => {
       </CanvasTitleWrapper>
 
       <CardWrapper className="canvas">
+        {/* @ts-expect-error: FIXME */}
         <Element name="metadata" style={{ position: 'absolute' }} />
         <PoolName section={1} />
       </CardWrapper>
 
       <CardWrapper className="canvas">
+        {/* @ts-expect-error: FIXME */}
         <Element name="nominate" style={{ position: 'absolute' }} />
         <Nominate bondFor="pool" section={2} />
       </CardWrapper>
 
       <CardWrapper className="canvas">
+        {/* @ts-expect-error: FIXME */}
         <Element name="roles" style={{ position: 'absolute' }} />
         <PoolRoles section={3} />
       </CardWrapper>
 
       <CardWrapper className="canvas">
+        {/* @ts-expect-error: FIXME */}
         <Element name="bond" style={{ position: 'absolute' }} />
         <Bond section={4} />
       </CardWrapper>
 
       <CardWrapper className="canvas">
+        {/* @ts-expect-error: FIXME */}
         <Element name="summary" style={{ position: 'absolute' }} />
         <Summary section={5} />
       </CardWrapper>

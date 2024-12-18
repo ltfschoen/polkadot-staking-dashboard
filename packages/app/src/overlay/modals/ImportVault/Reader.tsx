@@ -17,8 +17,11 @@ export const Reader = () => {
   const { t } = useTranslation('modals')
   const {
     network,
-    networkData: { ss58 },
+    // FIXME
+    networkData,
+    // networkData: { ss58 },
   } = useNetwork()
+  const ss58 = networkData?.ss58 || 42
   const { closePrompt } = usePrompt()
   const { addOtherAccounts } = useOtherAccounts()
   const { addVaultAccount, vaultAccountExists, getVaultAccounts } =

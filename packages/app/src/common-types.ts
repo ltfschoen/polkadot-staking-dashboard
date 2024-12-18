@@ -66,12 +66,20 @@ declare global {
 
 export type ChainId = NetworkId | SystemChainId
 
-export type NetworkId = 'polkadot' | 'kusama' | 'westend'
+export type NetworkId =
+  | 'polkadot'
+  | 'kusama'
+  | 'westend'
+  | 'tangle-mainnet'
+  | 'tangle-testnet'
 
 export type SystemChainId =
   | 'people-polkadot'
   | 'people-kusama'
   | 'people-westend'
+  // FIXME - required to avoid error
+  | 'people-tangle-mainnet'
+  | 'people-tangle-testnet'
 
 export type Networks = Record<string, Network>
 

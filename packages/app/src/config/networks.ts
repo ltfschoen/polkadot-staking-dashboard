@@ -5,8 +5,14 @@ import KusamaIconSVG from 'assets/svg/kusamaIcon.svg?react'
 import KusamaInlineSVG from 'assets/svg/kusamaInline.svg?react'
 import PolkadotIconSVG from 'assets/svg/polkadotIcon.svg?react'
 import PolkadotInlineSVG from 'assets/svg/polkadotInline.svg?react'
+import TangleMainnetIconSVG from 'assets/svg/tangleMainnetIcon.svg?react'
+import TangleMainnetInlineSVG from 'assets/svg/tangleMainnetInline.svg?react'
+import TangleTestnetIconSVG from 'assets/svg/tangleTestnetIcon.svg?react'
+import TangleTestnetInlineSVG from 'assets/svg/tangleTestnetInline.svg?react'
 import PolkadotTokenSVG from 'assets/svg/token/dot.svg?react'
 import KusamaTokenSVG from 'assets/svg/token/ksm.svg?react'
+import TangleMainnetTokenSVG from 'assets/svg/token/tnt.svg?react'
+import TangleTestnetTokenSVG from 'assets/svg/token/ttnt.svg?react'
 import WestendTokenSVG from 'assets/svg/token/wnd.svg?react'
 import WestendIconSVG from 'assets/svg/westendIcon.svg?react'
 import WestendInlineSVG from 'assets/svg/westendInline.svg?react'
@@ -181,6 +187,122 @@ export const NetworkList: Networks = {
     defaultFeeReserve: 0.1,
     maxExposurePageSize: new BigNumber(64),
   },
+  tangleMainnet: {
+    name: 'tangle-mainnet',
+    endpoints: {
+      // FIXME
+      lightClientKey: 'westend2',
+      // lightClientKey: 'tangle-mainnet2',
+      // FIXME
+      lightClient: async () => await import('polkadot-api/chains/westend2'),
+      // await import('polkadot-api/chains/tangle-mainnet2'),
+      // FIXME
+      defaultRpcEndpoint: 'IBP-GeoDNS1',
+      rpcEndpoints: {
+        // FIXME
+        'Tangle Mainnet Default': 'wss://rpc.tangle.tools',
+      },
+    },
+    // FIXME
+    colors: {
+      primary: {
+        light: '#da4e71',
+        dark: '#da4e71',
+      },
+      secondary: {
+        light: '#de6a50',
+        dark: '#d7674e',
+      },
+      stroke: {
+        light: '#da4e71',
+        dark: '#da4e71',
+      },
+      transparent: {
+        light: 'rgb(218, 78, 113, 0.05)',
+        dark: 'rgb(218, 78, 113, 0.05)',
+      },
+      pending: {
+        light: 'rgb(218, 78, 113, 0.33)',
+        dark: 'rgb(218, 78, 113, 0.33)',
+      },
+    },
+    unit: 'TNT',
+    units: 18,
+    ss58: 5845,
+    brand: {
+      icon: TangleMainnetIconSVG,
+      token: TangleMainnetTokenSVG,
+      inline: {
+        svg: TangleMainnetInlineSVG,
+        size: '0.96em',
+      },
+    },
+    api: {
+      unit: 'TNT',
+    },
+    // FIXME
+    defaultFeeReserve: 0.1,
+    // FIXME
+    maxExposurePageSize: new BigNumber(64),
+  },
+  tangleTestnet: {
+    name: 'tangle-testnet',
+    endpoints: {
+      // FIXME
+      lightClientKey: 'westend2',
+      // lightClientKey: 'tangle-testnet2',
+      // FIXME
+      lightClient: async () => await import('polkadot-api/chains/westend2'),
+      // await import('polkadot-api/chains/tangle-testnet2'),
+      // FIXME
+      defaultRpcEndpoint: 'Default',
+      rpcEndpoints: {
+        // FIXME
+        'Tangle Testnet Default': 'wss://testnet-rpc.tangle.tools',
+      },
+    },
+    // FIXME
+    colors: {
+      primary: {
+        light: '#da4e71',
+        dark: '#da4e71',
+      },
+      secondary: {
+        light: '#de6a50',
+        dark: '#d7674e',
+      },
+      stroke: {
+        light: '#da4e71',
+        dark: '#da4e71',
+      },
+      transparent: {
+        light: 'rgb(218, 78, 113, 0.05)',
+        dark: 'rgb(218, 78, 113, 0.05)',
+      },
+      pending: {
+        light: 'rgb(218, 78, 113, 0.33)',
+        dark: 'rgb(218, 78, 113, 0.33)',
+      },
+    },
+    unit: 'tTNT',
+    units: 18,
+    ss58: 42,
+    brand: {
+      icon: TangleTestnetIconSVG,
+      token: TangleTestnetTokenSVG,
+      inline: {
+        svg: TangleTestnetInlineSVG,
+        size: '0.96em',
+      },
+    },
+    api: {
+      unit: 'tTNT',
+    },
+    // FIXME
+    defaultFeeReserve: 0.1,
+    // FIXME
+    maxExposurePageSize: new BigNumber(64),
+  },
 }
 
 export const SystemChainList: Record<string, SystemChain> = {
@@ -231,5 +353,43 @@ export const SystemChainList: Record<string, SystemChain> = {
       },
     },
     relayChain: 'westend',
+  },
+  'people-tangle-mainnet': {
+    name: 'people-tangle-mainnet',
+    ss58: 42,
+    units: 18,
+    unit: 'TNT',
+    endpoints: {
+      // FIXME
+      lightClientKey: 'westend2_people',
+      lightClient: async () =>
+        // FIXME
+        await import('polkadot-api/chains/westend2_people'),
+      rpcEndpoints: {
+        // FIXME
+        IBP1: 'wss://sys.ibp.network/people-westend',
+        IBP2: 'wss://people-westend.dotters.network',
+      },
+    },
+    relayChain: 'tangle-mainnet',
+  },
+  'people-tangle-testnet': {
+    name: 'people-tangle-testnet',
+    ss58: 42,
+    units: 18,
+    unit: 'tTNT',
+    endpoints: {
+      // FIXME
+      lightClientKey: 'westend2_people',
+      lightClient: async () =>
+        // FIXME
+        await import('polkadot-api/chains/westend2_people'),
+      rpcEndpoints: {
+        // FIXME
+        IBP1: 'wss://sys.ibp.network/people-westend',
+        IBP2: 'wss://people-westend.dotters.network',
+      },
+    },
+    relayChain: 'tangle-mainnet',
   },
 }

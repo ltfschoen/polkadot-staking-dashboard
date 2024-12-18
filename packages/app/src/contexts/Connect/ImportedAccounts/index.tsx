@@ -35,8 +35,11 @@ export const ImportedAccountsProvider = ({
   const { isReady } = useApi()
   const {
     network,
-    networkData: { ss58 },
+    // FIXME
+    networkData,
+    // networkData: { ss58 },
   } = useNetwork()
+  const ss58 = networkData?.ss58 || 42
   const { otherAccounts } = useOtherAccounts()
   const { getExtensionAccounts } = useExtensionAccounts()
   const { setActiveAccount, setActiveProxy } = useActiveAccounts()

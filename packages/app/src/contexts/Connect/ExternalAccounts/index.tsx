@@ -35,8 +35,11 @@ export const ExternalAccountsProvider = ({
 }) => {
   const {
     network,
-    networkData: { ss58 },
+    // FIXME
+    networkData,
+    // networkData: { ss58 },
   } = useNetwork()
+  const ss58 = networkData?.ss58 || 42
   const { activeAccount, setActiveAccount } = useActiveAccounts()
 
   // Adds an external account (non-wallet) to accounts.

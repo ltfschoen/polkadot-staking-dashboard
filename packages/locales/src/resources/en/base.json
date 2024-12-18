@@ -52,6 +52,8 @@
     "title_kusama": "Kusama Staking Dashboard",
     "title_polkadot": "Polkadot Staking Dashboard",
     "title_westend": "Westend Staking Dashboard",
+    "title_tangle_mainnet": "Tangle Mainnet Staking Dashboard",
+    "title_tangle_testnet": "Tangle Testnet Staking Dashboard",
     "validators": "Validators"
   }
 }
