@@ -17,7 +17,13 @@ import WestendTokenSVG from 'assets/svg/token/wnd.svg?react'
 import WestendIconSVG from 'assets/svg/westendIcon.svg?react'
 import WestendInlineSVG from 'assets/svg/westendInline.svg?react'
 import BigNumber from 'bignumber.js'
-import type { Networks, SystemChain } from 'common-types'
+import type { AnyApi, Networks, SystemChain } from 'common-types'
+
+const loadJSONFile = async (filename: string): Promise<AnyApi> => {
+  const response = await fetch(filename)
+  const data = await response.json()
+  return data
+}
 
 export const NetworkList: Networks = {
   polkadot: {
@@ -194,8 +200,11 @@ export const NetworkList: Networks = {
       lightClientKey: 'westend2',
       // lightClientKey: 'tangle-mainnet2',
       // FIXME
-      lightClient: async () => await import('polkadot-api/chains/westend2'),
+      // https://github.com/tangle-network/tangle/blob/main/chainspecs/mainnet/tangle-mainnet.json
+      // https://github.com/polkadot-api/polkadot-api/tree/c90a7645e1c9156701e7a83181ea3def1ae5d435/packages/known-chains/specs
+      // lightClient: async () => await import('polkadot-api/chains/westend2'),
       // await import('polkadot-api/chains/tangle-mainnet2'),
+      lightClient: async () => await loadJSONFile('tangle-mainnet.json'),
       // FIXME
       defaultRpcEndpoint: 'IBP-GeoDNS1',
       rpcEndpoints: {
