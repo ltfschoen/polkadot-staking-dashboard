@@ -81,6 +81,11 @@
 
     <script src="/lottie/player.js"></script>
 
+    <script type="module">
+      // Redirect console logs to the terminal
+      import terminal from 'virtual:terminal'
+      globalThis.console = terminal
+    </script>
     <title>Polkadot Staking Dashboard | Polkadot Staking (DOT)</title>
   </head>
   <body>

@@ -70,6 +70,12 @@ staking.polkadot.cloud/#/overview?n=tangle-mainnet&l=cn
   yarn run lint
   ```
 
+- Install debugging plugin
+
+  ```bash
+  npm i -D vite-plugin-terminal
+  ```
+
 - Run development. Note: Must pass linting or may get errors
 
   ```bash

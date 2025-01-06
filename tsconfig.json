@@ -10,7 +10,10 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "strictPropertyInitialization": false,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "types": [
+      "vite-plugin-terminal/client"
+    ],
   },
   "include": ["packages/**/*", "**/*.d.ts", "eslint.config.js"],
   "exclude": ["**/*/node_modules", "**/*/dist", "**/*/lottie"]

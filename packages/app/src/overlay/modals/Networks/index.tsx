@@ -25,6 +25,11 @@ import {
   ContentWrapper,
   NetworkButton,
 } from './Wrapper'
+// import { terminal } from 'virtual:terminal' // eslint-disable-line
+import terminal from 'virtual:terminal' // eslint-disable-line
+
+terminal.warn('polkadot-staking-dashboard')
+terminal.log('polkadot-staking-dashboard')
 
 export const Networks = () => {
   const { t } = useTranslation('modals')

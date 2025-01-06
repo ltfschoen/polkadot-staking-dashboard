@@ -204,7 +204,8 @@ export const NetworkList: Networks = {
       // https://github.com/polkadot-api/polkadot-api/tree/c90a7645e1c9156701e7a83181ea3def1ae5d435/packages/known-chains/specs
       // lightClient: async () => await import('polkadot-api/chains/westend2'),
       // await import('polkadot-api/chains/tangle-mainnet2'),
-      lightClient: async () => await loadJSONFile('tangle-mainnet.json'),
+      // lightClient: async () => await loadJSONFile('tangle-mainnet.json'),
+      lightClient: async () => await loadJSONFile('polkadot.json'),
       // FIXME
       defaultRpcEndpoint: 'IBP-GeoDNS1',
       rpcEndpoints: {

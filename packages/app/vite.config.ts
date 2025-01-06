@@ -7,9 +7,11 @@ import checker from 'vite-plugin-checker'
 import eslint from 'vite-plugin-eslint'
 import svgr from 'vite-plugin-svgr'
 import tsconfigPaths from 'vite-tsconfig-paths'
+import Terminal from 'vite-plugin-terminal'
 
 // https://vitejs.dev/config/
-//
+//// vite.config.ts
+
 // NOTES:
 // - `base` is configured in `package.json` with the vite --base flag. In local dev it is `/`,
 //   whereas gh-pages always deploys to `/polkadot-staking-dashboard/`. Producution builds can also
@@ -24,6 +26,10 @@ export default defineConfig({
     checker({
       typescript: true,
     }),
+    Terminal({
+      console: 'terminal',
+      output: ['terminal', 'console']
+    })
   ],
   build: {
     outDir: 'build',

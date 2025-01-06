@@ -8,6 +8,7 @@ const STAKING_API_ENDPOINT = 'https://api.staking.polkadot.cloud'
 const client = new ApolloClient({
   uri: STAKING_API_ENDPOINT,
   cache: new InMemoryCache(),
+  connectToDevTools: true,
 })
 
 export { client }

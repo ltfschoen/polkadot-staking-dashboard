@@ -109,6 +109,7 @@ export class Api {
     // Initialise light client
     const smoldot = startFromWorker(new SmWorker())
     const smMetadata = getLightClientMetadata(this.#chainType, this.network)
+    console.log('smMetadata: ', smMetadata)
     const { chainSpec: relayChainSpec } = await smMetadata.relay.fn()
 
     let chain
