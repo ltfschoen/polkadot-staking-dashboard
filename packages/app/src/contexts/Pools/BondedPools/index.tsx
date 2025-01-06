@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // Copyright 2024 @polkadot-cloud/polkadot-staking-dashboard authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
@@ -26,6 +28,8 @@ import type {
 import { useApi } from '../../Api'
 import { defaultBondedPoolsContext } from './defaults'
 import type { BondedPoolsContextState } from './types'
+
+import terminal from 'virtual:terminal' // eslint-disable-line
 
 export const BondedPoolsContext = createContext<BondedPoolsContextState>(
   defaultBondedPoolsContext
@@ -103,11 +107,21 @@ export const BondedPoolsProvider = ({ children }: { children: ReactNode }) => {
       return [addresses.stash]
     })
     const nominationsMulti = await new NominatorsMulti(network, stashes).fetch()
-    setPoolsNominations(formatPoolsNominations(nominationsMulti, ids))
+    if (!nominationsMulti) { // eslint-disable-line
+      terminal.log('no pools nominations')
+      return
+    }
+    setPoolsNominations(formatPoolsNominations(nominationsMulti, ids)) // eslint-disable-line
   }
 
   // Format raw pool nominations data.
-  const formatPoolsNominations = (raw: AnyJson, ids: number[]) =>
+  const formatPoolsNominations = (raw: AnyJson, ids: number[]): any => {
+    terminal.log('formatPoolsNominations - raw | ids', raw, ids)
+
+    if (!raw) { // eslint-disable-line
+      terminal.log('no pools nominations')
+      return
+    }
     Object.fromEntries(
       raw.map((nominator: AnyJson, i: number) => {
         if (!nominator) {
@@ -116,6 +130,7 @@ export const BondedPoolsProvider = ({ children }: { children: ReactNode }) => {
         return [ids[i], { ...nominator }]
       })
     )
+  }
 
   // Queries a bonded pool and injects ID and addresses to a result.
   const queryBondedPool = async (id: number) => {

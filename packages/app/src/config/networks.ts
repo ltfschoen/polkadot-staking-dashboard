@@ -207,10 +207,11 @@ export const NetworkList: Networks = {
       // lightClient: async () => await loadJSONFile('tangle-mainnet.json'),
       lightClient: async () => await loadJSONFile('polkadot.json'),
       // FIXME
-      defaultRpcEndpoint: 'IBP-GeoDNS1',
+      defaultRpcEndpoint: 'Tangle Mainnet Default',
       rpcEndpoints: {
         // FIXME
         'Tangle Mainnet Default': 'wss://rpc.tangle.tools',
+        'IBP-GeoDNS1': 'wss://rpc.tangle.tools',
       },
     },
     // FIXME
@@ -265,7 +266,7 @@ export const NetworkList: Networks = {
       lightClient: async () => await import('polkadot-api/chains/westend2'),
       // await import('polkadot-api/chains/tangle-testnet2'),
       // FIXME
-      defaultRpcEndpoint: 'Default',
+      defaultRpcEndpoint: 'Tangle Testnet Default',
       rpcEndpoints: {
         // FIXME
         'Tangle Testnet Default': 'wss://testnet-rpc.tangle.tools',
@@ -375,13 +376,49 @@ export const SystemChainList: Record<string, SystemChain> = {
       lightClient: async () =>
         // FIXME
         await import('polkadot-api/chains/westend2_people'),
+      // rpcEndpoints: {
+      //   // FIXME
+      //   IBP1: 'wss://sys.ibp.network/people-westend',
+      //   IBP2: 'wss://people-westend.dotters.network',
+      // },
       rpcEndpoints: {
         // FIXME
-        IBP1: 'wss://sys.ibp.network/people-westend',
-        IBP2: 'wss://people-westend.dotters.network',
+        'Tangle Mainnet Default': 'wss://rpc.tangle.tools',
       },
     },
-    relayChain: 'tangle-mainnet',
+    // relayChain: 'tangle-mainnet',
+    relayChain: 'westend',
+
+    // name: 'people-tangle-mainnet',
+    // ss58: 0,
+    // units: 10,
+    // unit: 'DOT',
+    // endpoints: {
+    //   lightClientKey: 'polkadot_people',
+    //   lightClient: async () =>
+    //     await import('polkadot-api/chains/polkadot_people'),
+    //   rpcEndpoints: {
+    //     IBP1: 'wss://sys.ibp.network/people-polkadot',
+    //     IBP2: 'wss://people-polkadot.dotters.network',
+    //   },
+    // },
+    // relayChain: 'polkadot',
+
+    // name: 'tangle-mainnet',
+    // ss58: 5845,
+    // units: 18,
+    // unit: 'TNT',
+    // endpoints: {
+    //   // FIXME
+    //   lightClientKey: 'westend2',
+    //   lightClient: async () => await loadJSONFile('polkadot.json'),
+    //   // FIXME
+    //   rpcEndpoints: {
+    //     // FIXME
+    //     'Tangle Mainnet Default': 'wss://rpc.tangle.tools',
+    //   },
+    // },
+    // relayChain: 'polkadot',
   },
   'people-tangle-testnet': {
     name: 'people-tangle-testnet',
@@ -394,12 +431,17 @@ export const SystemChainList: Record<string, SystemChain> = {
       lightClient: async () =>
         // FIXME
         await import('polkadot-api/chains/westend2_people'),
+      // rpcEndpoints: {
+      //   // FIXME
+      //   IBP1: 'wss://sys.ibp.network/people-westend',
+      //   IBP2: 'wss://people-westend.dotters.network',
+      // },
       rpcEndpoints: {
         // FIXME
-        IBP1: 'wss://sys.ibp.network/people-westend',
-        IBP2: 'wss://people-westend.dotters.network',
+        'Tangle Testnet Default': 'wss://testnet-rpc.tangle.tools',
       },
     },
-    relayChain: 'tangle-mainnet',
+    // relayChain: 'tangle-testnet',
+    relayChain: 'westend',
   },
 }

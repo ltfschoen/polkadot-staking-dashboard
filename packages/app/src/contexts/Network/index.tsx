@@ -10,6 +10,8 @@ import { createContext, useContext, useState } from 'react'
 import { defaultNetwork, defaultNetworkContext } from './defaults'
 import type { NetworkContextInterface, NetworkState } from './types'
 
+import terminal from 'virtual:terminal' // eslint-disable-line
+
 export const NetworkContext = createContext<NetworkContextInterface>(
   defaultNetworkContext
 )
@@ -24,6 +26,7 @@ export const NetworkProvider = ({ children }: { children: ReactNode }) => {
     const urlNetworkValid = !!Object.values(NetworkList).find(
       (n) => n.name === urlNetworkRaw
     )
+    terminal.log('urlNetworkValid: ', urlNetworkValid)
 
     // use network from url if valid.
     if (urlNetworkValid) {

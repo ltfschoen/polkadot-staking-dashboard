@@ -4,14 +4,20 @@
 import { Base } from 'api/base'
 import type { ChainId } from 'common-types'
 
+import terminal from 'virtual:terminal' // eslint-disable-line
+
 export class ValidatorsEntries extends Base {
   constructor(network: ChainId) {
     super(network)
   }
 
   async fetch() {
-    return await this.unsafeApi.query.Staking.Validators.getEntries({
+    const res = await this.unsafeApi.query.Staking.Validators.getEntries({
       at: 'best',
     })
+
+    terminal.log('validators: ', res)
+
+    return res
   }
 }

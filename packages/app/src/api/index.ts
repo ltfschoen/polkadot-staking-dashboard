@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // Copyright 2024 @polkadot-cloud/polkadot-staking-dashboard authors & contributors
 // SPDX-License-Identifier: GPL-3.0-only
 
@@ -19,6 +21,8 @@ import type {
   PapiReadyEvent,
 } from './types'
 import { getLightClientMetadata } from './util'
+
+import terminal from 'virtual:terminal' // eslint-disable-line
 
 export class Api {
   // The network name associated with this Api instance
@@ -44,7 +48,7 @@ export class Api {
   }
 
   get unsafeApi() {
-    return this.#apiClient.getUnsafeApi()
+    return this.#apiClient.getUnsafeApi() // eslint-disable-line
   }
 
   get chainSpec() {
@@ -100,37 +104,74 @@ export class Api {
             this.#rpcEndpoint
           ]
 
+    terminal.log('initWsProvider - endpoint: ', endpoint);
+    terminal.log('initWsProvider - this.network: ', this.network);
+    terminal.log('initWsProvider - this.#rpcEndpoint: ', this.#rpcEndpoint);
+    
+    this.network
+
     // Initialize Polkadot API Client
     this.#apiClient = createClient(getWsProvider(endpoint))
   }
 
-  // Dynamically load and connect to Substrate Connect
+  // Dynamically load and connect to Substrate Connect (SC)
   async initScProvider() {
     // Initialise light client
     const smoldot = startFromWorker(new SmWorker())
     const smMetadata = getLightClientMetadata(this.#chainType, this.network)
-    console.log('smMetadata: ', smMetadata)
+    // console.log('light client metadata - smMetadata: ', smMetadata)
+    // terminal.log('light client metadata - smMetadata: ', smMetadata)
+    // `fn()` is the `lightClient` in the chain spec json file
     const { chainSpec: relayChainSpec } = await smMetadata.relay.fn()
+
+    terminal.log('adding light client metadata to smoldot client')
+
+    const endpoint =
+    this.#chainType === 'relay'
+      ? NetworkList[this.network].endpoints.rpcEndpoints[this.#rpcEndpoint]
+      : SystemChainList[this.network].endpoints.rpcEndpoints[
+          this.#rpcEndpoint
+        ]
 
     let chain
     if (this.#chainType === 'relay') {
+      terminal.log('chainType - relaychain')
       chain = smoldot.addChain({ chainSpec: relayChainSpec })
       this.#apiClient = createClient(getSmProvider(chain))
     } else {
-      const { chainSpec: paraChainSpec } = await smMetadata!.para!.fn()
-      chain = smoldot.addChain({
-        chainSpec: paraChainSpec,
-        potentialRelayChains: [
-          await smoldot.addChain({ chainSpec: relayChainSpec }),
-        ],
+      terminal.log('chainType - parachain with potential relay chains')
+      // const { chainSpec: paraChainSpec } = await smMetadata!.para!.fn()
+      // chain = smoldot.addChain({
+      //   chainSpec: paraChainSpec,
+      //   potentialRelayChains: [
+      //     await smoldot.addChain({ chainSpec: relayChainSpec }),
+      //   ],
+      // })
+      // this.#apiClient = createClient(getSmProvider(chain))
+
+      // /Users/luke/code/clones/github/ltfschoen/polkadot-staking-dashboard/node_modules/polkadot-api/README.md
+
+      // const jsonRpcProvider = WsProvider("wss://some-rpc-endpoint.io")
+      // this.#apiClient = createClient(jsonRpcProvider)
+
+      terminal.log('initScProvider - endpoint: ', endpoint);
+      // avoid having to use JsonApiProvider
+      this.#apiClient = createClient(getWsProvider(endpoint)) // eslint-disable-line
+
+      // logging blocks as they get finalized
+      this.#apiClient.finalizedBlock$.subscribe((block: any) => {
+        console.log(`#${block.number} - ${block.hash} - parentHash: ${block.parent}`)
       })
-      this.#apiClient = createClient(getSmProvider(chain))
     }
   }
 
   async fetchChainSpec() {
     try {
-      const chainSpecData = await this.#apiClient.getChainSpecData()
+      const chainSpecData = await this.#apiClient.getChainSpecData() // eslint-disable-line
+      terminal.log('fetchChainSpec: ', JSON.stringify(chainSpecData, null, 2))
+      terminal.log('this.#chainType: ', this.#chainType)
+      terminal.log('this.#connectionType: ', this.#connectionType)
+      terminal.log('this.#rpcEndpoint: ', this.#rpcEndpoint)
       const version = await this.unsafeApi.constants.System.Version()
 
       const { genesisHash, properties } = chainSpecData
@@ -158,6 +199,11 @@ export class Api {
         stateVersion,
         transactionVersion,
       }
+
+      terminal.log(
+        'this.#chainSpec: ',
+        JSON.stringify(this.#chainSpec, null, 2)
+      )
 
       // Dispatch ready eventd to let contexts populate constants
       this.dispatchReadyEvent()
